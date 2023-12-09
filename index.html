@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Выбор персонажа</title>
+  <style>
+    body {
+          background: #F5F5F5;
+        }
+
+    .container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container2 {
+      position: absolute;
+      top: 500px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .character {
+      width: 297px;
+      height: 297px;
+
+      background-repeat: no-repeat;
+      box-shadow: 0px 15px 15px #00000029;
+      border: 3px solid #27A7E7;
+      border-radius: 50px;
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .mario {
+      background-image: url('img/mario2.png');
+      background-size: cover; /* Добавлено для адаптивности */
+    }
+
+    .albert {
+      background-image: url('img/albert2.png');
+      background-size: cover; /* Добавлено для адаптивности */
+    }
+
+    .name {
+      font: normal normal bold 40px/48px SF Pro;
+      letter-spacing: 0px;
+      color: #27A7E7;
+      opacity: 1;
+    }
+
+    .description {
+      font: normal 300 40px/48px SF Pro;
+      letter-spacing: 0px;
+      color: #27A7E7;
+      opacity: 1;
+      white-space: nowrap;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="character mario"></div>
+    <div class="name">Марио</div>
+    <div class="description">Персонаж</div>
+  </div>
+  <div class="container2">
+    <div class="character albert"></div>
+    <div class="name">Альберт Эйнштейн</div>
+    <div class="description">Физик-теоретик</div>
+  </div>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+
+    document.querySelector('.mario').addEventListener('click', function() {
+      choice('mario');
+    });
+
+    document.querySelector('.albert').addEventListener('click', function() {
+      choice('albert');
+    });
+
+    function choice(character) {
+      let data = {
+        name: character,
+      };
+      tg.sendData(JSON.stringify(data));
+      tg.close();
+    }
+
+    tg.ready();
+  </script>
+</body>
+</html>
